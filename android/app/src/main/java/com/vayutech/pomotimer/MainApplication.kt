@@ -1,4 +1,4 @@
-package com.pomotimer
+package com.vayutech.pomotimer
 
 import android.app.Application
 import com.facebook.react.PackageList

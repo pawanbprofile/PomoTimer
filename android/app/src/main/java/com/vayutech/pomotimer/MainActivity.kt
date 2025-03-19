@@ -1,4 +1,4 @@
-package com.pomotimer
+package com.vayutech.pomotimer
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
