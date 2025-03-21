@@ -1,5 +1,7 @@
 import {createContext, useContext, useEffect, useRef, useState} from 'react';
 import Colors from '../utils/Colors';
+import {StatusBarStyle} from 'react-native';
+import {DARK_CONTENT, LIGHT_CONTENT} from 'utils/Constants';
 
 export enum Theme {
   ORANGE,
@@ -10,6 +12,7 @@ type ThemeContextType = {
   primaryColor: string;
   textColor: string;
   actionColor: string;
+  contentType: StatusBarStyle;
   toggleTheme: () => void;
 };
 export const ThemeContext = createContext<undefined | ThemeContextType>(
@@ -21,15 +24,18 @@ export const ThemeContextProvider = ({children}) => {
   const primaryColor = useRef<string>(Colors.orangeTheme.primaryColor);
   const textColor = useRef<string>(Colors.orangeTheme.textColor);
   const actionColor = useRef<string>(Colors.orangeTheme.actionColor);
+  const contentType = useRef<StatusBarStyle>(LIGHT_CONTENT);
   useEffect(() => {
     if (theme === Theme.LIGHT) {
       primaryColor.current = Colors.lightTheme.primaryColor;
       textColor.current = Colors.lightTheme.textColor;
       actionColor.current = Colors.lightTheme.actionColor;
+      contentType.current = DARK_CONTENT;
     } else {
       primaryColor.current = Colors.orangeTheme.primaryColor;
       textColor.current = Colors.orangeTheme.textColor;
       actionColor.current = Colors.orangeTheme.actionColor;
+      contentType.current = LIGHT_CONTENT;
     }
   }, [theme]);
 
@@ -44,6 +50,7 @@ export const ThemeContextProvider = ({children}) => {
         primaryColor: primaryColor.current,
         textColor: textColor.current,
         actionColor: actionColor.current,
+        contentType: contentType.current,
         toggleTheme: toggleTheme,
       }}>
       {children}

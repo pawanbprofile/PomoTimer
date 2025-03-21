@@ -8,8 +8,8 @@ const App = () => {
   return (
     <ThemeContextProvider>
       <SafeAreaView style={{flex: 1}}>
-        <CustomStatusBar />
         <RootNavigator />
+        <CustomStatusBar />
       </SafeAreaView>
     </ThemeContextProvider>
   );
